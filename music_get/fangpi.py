@@ -2,12 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
-def get_music_info(keyword):
+def get_music_info(keyword, proxy=False):
     encodeKeyword = requests.utils.quote(keyword)
     
-    requests.proxies = {
-        "http": "http://127.0.0.1:1087"
-    }
+    if proxy:
+        requests.proxies = {
+            "http": "http://127.0.0.1:1087"
+        }
     resp = requests.get(f"https://www.fangpi.net/s/{encodeKeyword}", verify=False)
     soup = BeautifulSoup(resp.content,"html.parser")
     cards = soup.find_all('div', class_='card mb-1')

@@ -7,6 +7,6 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/music/{item_keyword}")
-def get_music(item_keyword: str):
-    return fangpi.get_music_info(item_keyword)
+@app.get("/music/search")
+def get_music(keyword: str, proxy: bool):
+    return fangpi.get_music_info(keyword, proxy)
