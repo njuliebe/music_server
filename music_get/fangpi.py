@@ -30,6 +30,7 @@ def get_music_info(keyword, proxy=False):
             if play_id:
                 play_url = get_music_play_url(play_id)
             list.append({
+                'id': href.split('/')[-1],
                 'title': title,
                 'artist': artist,
                 'href': href,
@@ -66,6 +67,6 @@ def get_music_play_url(play_id):
 
 if __name__ == "__main__":
     keyword = "稻香"
-    resp = get_music_info(keyword)
+    resp = get_music_info(keyword, False)
 
     print(json.dumps(resp))
